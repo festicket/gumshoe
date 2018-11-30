@@ -268,24 +268,26 @@
 	 * @returns {Object} The current nav data.
 	 */
 	gumshoe.getCurrentNav = function () {
-
-		// Get current position from top of the document
-		var position = root.pageYOffset;
-
-		// If at the bottom of the page and last section is in the viewport, activate the last nav
-		if ( (root.innerHeight + position) >= docHeight && isInViewport( navs[0].target ) ) {
-			activateNav( navs[0] );
-			return navs[0];
-		}
-
-		// Otherwise, loop through each nav until you find the active one
-		for (var i = 0, len = navs.length; i < len; i++) {
-			var nav = navs[i];
-			if ( nav.distance <= position ) {
-				activateNav( nav );
-				return nav;
+		if (navs) {
+			// Get current position from top of the document
+			var position = root.pageYOffset;
+	
+			// If at the bottom of the page and last section is in the viewport, activate the last nav
+			if ( (root.innerHeight + position) >= docHeight && isInViewport( navs[0].target ) ) {
+				activateNav( navs[0] );
+				return navs[0];
+			}
+	
+			// Otherwise, loop through each nav until you find the active one
+			for (var i = 0, len = navs.length; i < len; i++) {
+				var nav = navs[i];
+				if ( nav.distance <= position ) {
+					activateNav( nav );
+					return nav;
+				}
 			}
 		}
+
 
 		// If no active nav is found, deactivate the current nav
 		deactivateCurrentNav();
@@ -365,17 +367,15 @@
 
 				eventTimeout = null; // Reset timeout
 
-				if (gumshoe) {
-					// If scroll event, get currently active nav
-					if ( event.type === 'scroll' ) {
-						gumshoe.getCurrentNav();
-					}
-	
-					// If resize event, recalculate distances and then get currently active nav
-					if ( event.type === 'resize' ) {
-						gumshoe.setDistances();
-						gumshoe.getCurrentNav();
-					}
+				// If scroll event, get currently active nav
+				if ( event.type === 'scroll' ) {
+					gumshoe.getCurrentNav();
+				}
+
+				// If resize event, recalculate distances and then get currently active nav
+				if ( event.type === 'resize' ) {
+					gumshoe.setDistances();
+					gumshoe.getCurrentNav();
 				}
 
 			}, 66);
