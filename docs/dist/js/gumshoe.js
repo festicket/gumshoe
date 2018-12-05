@@ -1,5 +1,5 @@
 /*!
- * @festicket/gumshoejs v3.5.5: A simple, framework-agnostic scrollspy script.
+ * @festicket/gumshoejs v3.5.6: A simple, framework-agnostic scrollspy script.
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/festicket/gumshoe
@@ -293,11 +293,11 @@
 					return nav;
 				}
 			}
+
+			// If no active nav is found, deactivate the current nav
+			deactivateCurrentNav();
+			settings.callback();
 		}
-		
-		// If no active nav is found, deactivate the current nav
-		deactivateCurrentNav();
-		settings.callback();
 
 	};
 

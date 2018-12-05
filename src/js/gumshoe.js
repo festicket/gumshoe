@@ -286,11 +286,11 @@
 					return nav;
 				}
 			}
+
+			// If no active nav is found, deactivate the current nav
+			deactivateCurrentNav();
+			settings.callback();
 		}
-		
-		// If no active nav is found, deactivate the current nav
-		deactivateCurrentNav();
-		settings.callback();
 
 	};
 
