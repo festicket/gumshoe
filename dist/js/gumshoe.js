@@ -1,5 +1,5 @@
 /*!
- * @festicket/gumshoejs v3.5.6: A simple, framework-agnostic scrollspy script.
+ * @festicket/gumshoejs v3.5.7: A simple, framework-agnostic scrollspy script.
  * (c) 2018 Chris Ferdinandi
  * MIT License
  * http://github.com/festicket/gumshoe
